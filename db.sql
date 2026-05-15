@@ -10,7 +10,6 @@ CREATE TABLE compras (
     data_compra DATE NOT NULL
 );
 
-
 CREATE TABLE dividendos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ativo VARCHAR(10) NOT NULL,

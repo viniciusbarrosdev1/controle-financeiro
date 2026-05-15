@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  
+  nginx: 
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+     - php
+
+  php: 
+    build: .
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+
+  mysql: 
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bolsa_de_valores
+      MYSQL_USER: dalmolino
+      MYSQL_PASSWORD: chico123
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
