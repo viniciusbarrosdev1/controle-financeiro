@@ -1,15 +1,10 @@
 <?php
-session_start();
-if (!isset($_SESSION['usuario'])) {
-    header('Location: login.php');
-    exit;
-}
-
+require_once 'functions.php';
+validarSessao();
 require_once 'classes/Usuario.php';
 
 $usuario = new Usuario();
 
-// Operações de CRUD
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['excluir'])) {
         $usuario->excluirUsuario($_POST['id']);
@@ -17,29 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $usuarios = $usuario->listarUsuarios();
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Usuários</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.php">Início</a></li>
-                <li><a href="compras.php">Cadastrar Compras</a></li>
-                <li><a href="dividendos.php">Cadastrar Dividendos</a></li>
-                <li><a href="relatorio.php">Relatório</a></li>
-                <li><a href="usuarios.php">Gerenciar Usuários</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+$pageTitle = 'Gerenciar Usuários';
+require_once 'layouts/header.php';
+?>
         <h1>Gerenciar Usuários</h1>
         <table border="1">
             <tr>
@@ -66,6 +42,4 @@ $usuarios = $usuario->listarUsuarios();
                 </tr>
             <?php endforeach; ?>
         </table>
-    </main>
-</body>
-</html>
+<?php require_once 'layouts/footer.php'; ?>

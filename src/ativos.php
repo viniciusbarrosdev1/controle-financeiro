@@ -1,33 +1,29 @@
 <?php
+require_once 'functions.php';
+validarSessao();
 require_once 'classes/Ativo.php';
 
 $ativo = new Ativo();
 $relatorio = $ativo->calcularPrecoMedio();
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Ativos</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <h1>Relatório de Ativos</h1>
-    <table border="1">
-        <tr>
-            <th>Ativo</th>
-            <th>Total Comprado</th>
-            <th>Preço Médio</th>
-        </tr>
-        <?php foreach ($relatorio as $linha): ?>
+$pageTitle = 'Relatório de Ativos';
+require_once 'layouts/header.php';
+?>
+        <h1>Relatório de Ativos</h1>
+        <table border="1">
             <tr>
-                <td><?= $linha['ativo'] ?></td>
-                <td><?= $linha['total_quantidade'] ?></td>
-                <td><?= number_format($linha['preco_medio'], 2, ',', '.') ?></td>
+                <th>Ativo</th>
+                <th>Total Comprado</th>
+                <th>Total Investido</th>
+                <th>Preço Médio</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
-</body>
-</html>
+            <?php foreach ($relatorio as $linha): ?>
+                <tr>
+                    <td><?= $linha['ativo'] ?></td>
+                    <td><?= number_format($linha['total_quantidade'], 0, ',', '.') ?></td>
+                    <td>R$ <?= number_format($linha['total_valor'], 2, ',', '.') ?></td>
+                    <td>R$ <?= number_format($linha['preco_medio'], 2, ',', '.') ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+<?php require_once 'layouts/footer.php'; ?>

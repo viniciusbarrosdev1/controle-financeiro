@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,16 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Login</h1>
     <form method="POST">
+        <h1>Login</h1>
         <label>Email:</label>
-        <input type="email" name="email" required><br>
+        <input type="email" name="email" required>
         <label>Senha:</label>
-        <input type="password" name="senha" required><br>
+        <input type="password" name="senha" required>
         <button type="submit">Entrar</button>
+        <?php if (isset($erro)): ?>
+            <p><?= $erro ?></p>
+        <?php endif; ?>
+        <p style="color:#333;">Não tem uma conta? <a href="registro.php">Crie uma</a></p>
     </form>
-    <?php if (isset($erro)): ?>
-        <p><?= $erro ?></p>
-    <?php endif; ?>
 </body>
 </html>
