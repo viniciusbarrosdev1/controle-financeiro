@@ -19,17 +19,26 @@ services:
     depends_on:
       - mysql
 
-  mysql: 
+  mysql:
     image: mysql:8.0
-    ports:
-      - "3306:3306"
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: bolsa_de_valores
       MYSQL_USER: dalmolino
       MYSQL_PASSWORD: chico123
     volumes:
       - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:

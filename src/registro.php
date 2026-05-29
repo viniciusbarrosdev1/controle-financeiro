@@ -10,23 +10,24 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuário</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Registrar usuário</h1>
     <form method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required><br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required><br>
-
+        <h1>Registrar</h1>
+        <label>Nome:</label>
+        <input type="text" name="nome" required>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <label>Senha:</label>
+        <input type="password" name="senha" required>
         <button type="submit">Registrar</button>
+        <p style="color:#333;">Já tem uma conta? <a href="login.php">Entrar</a></p>
     </form>
 </body>
 </html>
